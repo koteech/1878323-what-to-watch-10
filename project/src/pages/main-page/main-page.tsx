@@ -1,4 +1,3 @@
-import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {Films} from '../../types/films';

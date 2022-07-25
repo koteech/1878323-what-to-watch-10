@@ -1,4 +1,3 @@
-import React from 'react';
 import {Films} from '../../types/films';
 import Logo from '../../components/logo/logo';
 import FilmList from '../../components/film-list/film-list';

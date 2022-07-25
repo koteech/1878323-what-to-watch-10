@@ -1,4 +1,3 @@
-import React from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {FilmsReviews} from '../../types/reviews';
 import FilmReview from '../../components/film-details/film-review';

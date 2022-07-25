@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 type Event = {
   target: {
@@ -8,29 +8,29 @@ type Event = {
 }
 
 type RadioStarProps = {
-  index: string,
+  index: number,
   cb: (evt: Event) => void
 }
 
 type InitialState = {
-  selectedOption: string,
+  selectedOption: number,
   text: string
 }
 
 const initialState: InitialState = {
-  selectedOption: '8',
+  selectedOption: 8,
   text: ''
 };
 
 function AddReviewForm(): JSX.Element {
   const [formData, setFormData] = useState({...initialState});
 
-  const inputChangeHandle = (evt: Event) => {
-    const value = evt.target.value;
+  const handleChangeInput = (evt: Event) => {
+    const value = +evt.target.value;
     setFormData({...formData, selectedOption: value});
   };
 
-  const textareaChangeHandle = (evt: Event) => {
+  const handleChangeTextarea = (evt: Event) => {
     const value = evt.target.value;
     setFormData({...formData, text: value});
   };
@@ -47,14 +47,14 @@ function AddReviewForm(): JSX.Element {
       <div className="rating">
         <div className="rating__stars">
           {Array.from({length: 10}, (elem, index) => index + 1).sort((a, b) => b - a).map((elem) => {
-            const indexString = elem.toString();
-            return <RadioStar key={indexString} index={indexString} cb={inputChangeHandle}/>;
+            const indexString = elem;
+            return <RadioStar key={indexString} index={indexString} cb={handleChangeInput}/>;
           })}
         </div>
       </div>
 
       <div className="add-review__text">
-        <textarea onChange={textareaChangeHandle} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"/>
+        <textarea onChange={handleChangeTextarea} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"/>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>
