@@ -1,8 +1,8 @@
-import {useNavigate} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import {Films} from '../../types/films';
-import Logo from '../../components/logo/logo';
 import FilmList from '../../components/film-list/film-list';
+import Logo from '../../components/logo/logo';
+import {Films} from '../../types/films';
+import {AppRoute} from '../../const';
+import {useNavigate} from 'react-router-dom';
 
 
 type MainPageProps = {
@@ -50,6 +50,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
+
                 <button onClick={() => navigate(AppRoute.MyList)} className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"/>

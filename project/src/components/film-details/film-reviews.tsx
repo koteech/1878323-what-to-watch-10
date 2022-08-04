@@ -1,7 +1,7 @@
-import {Link, useParams} from 'react-router-dom';
 import {FilmsReviews} from '../../types/reviews';
-import FilmReview from '../../components/film-details/film-review';
+import {Link, useParams} from 'react-router-dom';
 import NoPage from '../../pages/no-page/no-page';
+import FilmReview from '../../components/film-details/film-review';
 
 type FilmReviewsProps = {
   filmsReviews: FilmsReviews

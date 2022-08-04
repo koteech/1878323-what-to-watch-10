@@ -1,12 +1,13 @@
 import {Link, Outlet, useNavigate, useParams} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import {Films} from '../../types/films';
 import Logo from '../../components/logo/logo';
+import {Films} from '../../types/films';
 import NoPage from '../../pages/no-page/no-page';
+import {AppRoute} from '../../const';
 
 type FilmsProps = {
-  films: Films
+    films: Films
 };
+
 
 function FilmPage({films}: FilmsProps): JSX.Element {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ function FilmPage({films}: FilmsProps): JSX.Element {
               <div className="film-card__poster film-card__poster--big">
                 <img src={film.posterUrl} alt={film.title} width="218" height="327"/>
               </div>
+
               <Outlet/>
             </div>
           </div>
@@ -121,6 +123,7 @@ function FilmPage({films}: FilmsProps): JSX.Element {
 
           <footer className="page-footer">
             <Logo light/>
+
             <div className="copyright">
               <p>© 2019 What to watch Ltd.</p>
             </div>

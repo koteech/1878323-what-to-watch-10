@@ -1,12 +1,12 @@
-import {Link, useParams} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import {Films} from '../../types/films';
 import Logo from '../../components/logo/logo';
-import AddReviewForm from '../../components/add-review-form/add-review-form';
+import {Link, useParams} from 'react-router-dom';
+import {Films} from '../../types/films';
 import NoPage from '../../pages/no-page/no-page';
+import {AppRoute} from '../../const';
+import AddReviewForm from '../../components/add-review-form/add-review-form';
 
 type AddReviewPageParams = {
-  films: Films
+    films: Films
 }
 
 function AddReviewPage({films}: AddReviewPageParams): JSX.Element {
