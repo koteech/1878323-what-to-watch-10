@@ -1,14 +1,14 @@
 export type FilmReviews = {
-  filmId: string,
-  reviews: Review[]
+    filmId: string,
+    reviews: Review[]
 }
 
 export type Review = {
-  reviewId: string,
-  text: string,
-  author: string,
-  date: Date,
-  reviewRate: number
+    reviewId: string,
+    text: string,
+    author: string,
+    date: Date,
+    reviewRate: number
 }
 
 export type FilmsReviews = FilmReviews[]
