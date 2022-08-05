@@ -52,13 +52,11 @@ function AddReviewForm(): JSX.Element {
           })}
         </div>
       </div>
-
       <div className="add-review__text">
-        <textarea onChange={handleChangeTextarea} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"/>
+        <textarea onChange={handleChangeTextarea} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={formData.text}/>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>
-
       </div>
     </form>
   );

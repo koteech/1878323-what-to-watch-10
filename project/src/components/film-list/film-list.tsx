@@ -2,10 +2,17 @@ import {Films} from '../../types/films';
 import FilmCard from '../../components/film-card/film-card';
 
 type FilmListProps = {
-  films: Films
+    films: Films
+    genre?: string,
+    count?: number
 }
 
-function FilmList({films}: FilmListProps): JSX.Element {
+function FilmList({films, genre, count = 4}: FilmListProps): JSX.Element {
+  if (genre) {
+    const filmsBygenre = films.filter((film) => film.genre === genre).slice(0, count);
+    films = filmsBygenre;
+  }
+
   return (
     <div className="catalog__films-list">
       {films.map((film) => <FilmCard key={film.id} film={film}/>)}
