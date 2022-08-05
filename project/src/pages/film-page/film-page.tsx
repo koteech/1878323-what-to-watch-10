@@ -5,7 +5,7 @@ import NoPage from '../../pages/no-page/no-page';
 import {AppRoute} from '../../const';
 
 type FilmsProps = {
-    films: Films
+  films: Films
 };
 
 

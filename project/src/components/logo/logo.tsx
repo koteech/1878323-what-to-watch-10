@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 
 type LogoProps = {
-    light: boolean
+  light: boolean
 }
 
 function Logo({light}: LogoProps): JSX.Element {
