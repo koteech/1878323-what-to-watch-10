@@ -2,9 +2,9 @@ import {useEffect, useRef} from 'react';
 import {Film} from '../../types/films';
 
 type VideoPlayerProps = {
-    film: Film,
-    isPlaying: boolean,
-    setIsPlaying: (isPlaying: boolean) => void;
+  film: Film,
+  isPlaying: boolean,
+  setIsPlaying: (isPlaying: boolean) => void;
 }
 
 function VideoPlayer({film, isPlaying, setIsPlaying}: VideoPlayerProps): JSX.Element {
@@ -35,9 +35,9 @@ function VideoPlayer({film, isPlaying, setIsPlaying}: VideoPlayerProps): JSX.Ele
         setIsPlaying(false);
       }}
       ref={playerRef}
-      src={film.player.link}
+      src={film.previewVideoLink}
       muted
-      poster={film.previewUrl}
+      poster={film.previewImage}
       width='280'
       height='175'
       style={{objectFit: 'cover'}}

@@ -1,10 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {Films} from '../../types/films';
-import {FilmsReviews} from '../../types/reviews';
-import FilmOverview from '../../components/film-details/film-owerview';
-import FilmDetails from '../../components/film-details/film-details';
-import FilmReviews from '../../components/film-details/film-reviews';
+import {Reviews} from '../../types/reviews';
 import PrivateRoute from '../../components/private-route/private-route';
 import MainPage from '../../pages/main-page/main-page';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
@@ -15,11 +12,11 @@ import PlayerPage from '../../pages/player-page/player-page';
 import NoPage from '../../pages/no-page/no-page';
 
 type AppPageProps = {
-  films: Films
-  filmsReviews: FilmsReviews
+    films: Films
+    filmReviews: Reviews
 };
 
-function App({films, filmsReviews}: AppPageProps): JSX.Element {
+function App({films, filmReviews}: AppPageProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -36,14 +33,8 @@ function App({films, filmsReviews}: AppPageProps): JSX.Element {
           </PrivateRoute>
         }
         />
-
-        <Route path={`${AppRoute.Films}/:id`} element={<FilmPage films={films}/>}>
-          <Route index element={<FilmOverview films={films}/>}/>
-          <Route path='details' element={<FilmDetails films={films}/>}/>
-          <Route path='reviews' element={<FilmReviews filmsReviews={filmsReviews}/>}/>
-        </Route>
+        <Route path={`${AppRoute.Films}/:id`} element={<FilmPage films={films} filmReviews={filmReviews}/>}/>
         <Route path={`${AppRoute.Films}/:id/${AppRoute.AddReview}`} element={<AddReviewPage films={films}/>}/>
-
         <Route path={`${AppRoute.Player}/:id`} element={<PlayerPage films={films}/>}/>
         <Route path='*' element={<NoPage/>}/>
       </Routes>
