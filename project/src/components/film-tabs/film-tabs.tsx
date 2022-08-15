@@ -7,8 +7,8 @@ import {FilmReviews} from '../film-details/film-reviews';
 import {FilmTabName} from '../../const';
 
 type FilmOverviewProps = {
-    film: Film
-    filmReviews: Reviews | undefined
+  film: Film
+  filmReviews: Reviews | undefined
 }
 
 function FilmTabs({film, filmReviews}: FilmOverviewProps): JSX.Element {

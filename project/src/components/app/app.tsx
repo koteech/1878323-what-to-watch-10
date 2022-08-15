@@ -12,8 +12,8 @@ import PlayerPage from '../../pages/player-page/player-page';
 import NoPage from '../../pages/no-page/no-page';
 
 type AppPageProps = {
-    films: Films
-    filmReviews: Reviews
+  films: Films
+  filmReviews: Reviews
 };
 
 function App({films, filmReviews}: AppPageProps): JSX.Element {

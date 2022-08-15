@@ -9,8 +9,7 @@ type FilmListProps = {
 
 function FilmList({films, genre, count = 4}: FilmListProps): JSX.Element {
   if (genre) {
-    const filmsBygenre = films.filter((film) => film.genre === genre).slice(0, count);
-    films = filmsBygenre;
+    films = films.filter((film) => film.genre === genre).slice(0, count);
   }
 
   return (
