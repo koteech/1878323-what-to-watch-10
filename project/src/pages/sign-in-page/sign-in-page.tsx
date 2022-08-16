@@ -5,10 +5,8 @@ function SignInPage(): JSX.Element {
     <div className="user-page">
       <header className="page-header user-page__head">
         <Logo light={false}/>
-
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
-
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
           <div className="sign-in__fields">
@@ -26,10 +24,8 @@ function SignInPage(): JSX.Element {
           </div>
         </form>
       </div>
-
       <footer className="page-footer">
         <Logo light/>
-
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
         </div>

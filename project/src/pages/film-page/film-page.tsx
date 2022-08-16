@@ -25,12 +25,9 @@ function FilmPage({films, filmReviews}: FilmsProps): JSX.Element {
             <div className="film-card__bg">
               <img src={film.backgroundImage} alt={film.name}/>
             </div>
-
             <h1 className="visually-hidden">WTW</h1>
-
             <header className="page-header film-card__head">
               <Logo light={false}/>
-
               <ul className="user-block">
                 <li className="user-block__item">
                   <div className="user-block__avatar">
@@ -42,7 +39,6 @@ function FilmPage({films, filmReviews}: FilmsProps): JSX.Element {
                 </li>
               </ul>
             </header>
-
             <div className="film-card__wrap">
               <div className="film-card__desc">
                 <h2 className="film-card__title">{film.name}</h2>
@@ -50,7 +46,6 @@ function FilmPage({films, filmReviews}: FilmsProps): JSX.Element {
                   <span className="film-card__genre">{film.genre}</span>
                   <span className="film-card__year">{film.released}</span>
                 </p>
-
                 <div className="film-card__buttons">
                   <button onClick={() => navigate(`${AppRoute.Player}/${film.id}`)} className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
@@ -70,28 +65,22 @@ function FilmPage({films, filmReviews}: FilmsProps): JSX.Element {
               </div>
             </div>
           </div>
-
           <div className="film-card__wrap film-card__translate-top">
             <div className="film-card__info">
               <div className="film-card__poster film-card__poster--big">
                 <img src={film.posterImage} alt={film.name} width="218" height="327"/>
               </div>
-
               <FilmTabs film={film} filmReviews={filmReviews}/>
             </div>
           </div>
         </section>
-
         <div className="page-content">
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-
             <FilmList films={films} genre={film.genre}/>
           </section>
-
           <footer className="page-footer">
             <Logo light/>
-
             <div className="copyright">
               <p>© 2019 What to watch Ltd.</p>
             </div>
@@ -100,7 +89,6 @@ function FilmPage({films, filmReviews}: FilmsProps): JSX.Element {
       </>
     );
   }
-
   return (<NoPage/>);
 }
 

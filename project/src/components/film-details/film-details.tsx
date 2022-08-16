@@ -2,7 +2,7 @@ import {Film} from '../../types/films';
 import {getTimeFromMins} from '../../utils/common';
 
 type FilmDetailsProps = {
-    film: Film
+  film: Film
 }
 
 function FilmDetails({film}: FilmDetailsProps): JSX.Element {
