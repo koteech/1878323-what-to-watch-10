@@ -1,6 +1,5 @@
 import FilmList from '../../components/film-list/film-list';
 import Logo from '../../components/logo/logo';
-import {Films} from '../../types/films';
 import {AppRoute} from '../../const';
 import {useNavigate} from 'react-router-dom';
 import {GenreList} from '../../components/genre-list/genre-list';
@@ -9,21 +8,16 @@ import {ShowMore} from '../../components/show-more/show-more';
 import {useEffect} from 'react';
 import {resetFilmCount} from '../../store/action';
 
-
-type MainPageProps = {
-  films: Films
-};
-
-function MainPage({films}: MainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
   const navigate = useNavigate();
   const showCount = useAppSelector((state) => state.showCount);
-  const stateFilms = useAppSelector((state) => state.films);
+  const filmsByGenre = useAppSelector((state) => state.filmsByGenre);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => () => {
     dispatch(resetFilmCount());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -78,9 +72,9 @@ function MainPage({films}: MainPageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList films={films}/>
-          <FilmList films={stateFilms.slice(0, showCount)}/>
-          {showCount < stateFilms.length && <ShowMore/>}
+          <GenreList/>
+          <FilmList/>
+          {showCount < filmsByGenre.length && <ShowMore/>}
         </section>
         <footer className="page-footer">
           <Logo light/>
