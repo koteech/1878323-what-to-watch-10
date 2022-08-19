@@ -16,10 +16,11 @@ function FilmDetails({film}: FilmDetailsProps): JSX.Element {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
-          <span className="film-card__details-value">{film.starring.map((elem) => <span key={elem}>{elem},</span>)}</span>
+          <span className="film-card__details-value">
+            {film.starring.join(',')}
+          </span>
         </p>
       </div>
-
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>

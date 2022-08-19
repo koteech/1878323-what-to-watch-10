@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import {Film} from '../../types/films';
 import {VideoPlayer} from '../video-player/video-player';
 
-
 type FilmCardProps = {
   film: Film
 }

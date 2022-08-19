@@ -18,7 +18,7 @@ const getRatingName = (rate: number) => {
 };
 
 type FilmOverviewProps = {
-    film: Film
+  film: Film
 }
 
 function FilmOverview({film}: FilmOverviewProps): JSX.Element {
@@ -31,12 +31,9 @@ function FilmOverview({film}: FilmOverviewProps): JSX.Element {
           <span className="film-rating__count">{`${film.scoresCount.toLocaleString('ru', {style: 'decimal'})} ratings`}</span>
         </p>
       </div>
-
       <div className="film-card__text">
         <p>{film.description}</p>
-
         <p className="film-card__director"><strong>{`Director: ${film.director}`}</strong></p>
-
         <p className="film-card__starring"><strong>{`Starring: ${film.starring}`}</strong></p>
       </div>
     </>
