@@ -18,7 +18,7 @@ function MainPage(): JSX.Element {
 
   useEffect(() => () => {
     dispatch(resetFilmCount());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
