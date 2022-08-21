@@ -15,7 +15,6 @@ function FilmReview({review}: FilmReviewProps): JSX.Element {
           <time className="review__date" dateTime={review.date}>{getFormatDateByString(review.date)}</time>
         </footer>
       </blockquote>
-
       <div className="review__rating">{review.rating.toFixed(1)}</div>
     </div>
   );
