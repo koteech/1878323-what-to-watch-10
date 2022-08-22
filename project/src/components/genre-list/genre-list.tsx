@@ -1,14 +1,17 @@
 import {Films} from '../../types/films';
 import {Genre} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeGenre, setFilmsByGenre} from '../../store/action';
+import {getGenre} from '../../store/app-process/selectors';
+import {getFilms} from '../../store/film-data/selectors';
+import {changeGenre} from '../../store/app-process/app-process';
 
 const getGenreList = (films: Films) => ['All genres', ...new Set(films.map((film) => film.genre))];
 
 function GenreList() {
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector((state) => state.genre);
-  const films = useAppSelector((state) => state.films);
+  const activeGenre = useAppSelector(getGenre);
+  const films = useAppSelector(getFilms);
+
   return (
     <ul className="catalog__genres-list">
       {getGenreList(films).map((filmGenre) => (
@@ -17,7 +20,6 @@ function GenreList() {
             (evt) => {
               evt.preventDefault();
               dispatch(changeGenre(filmGenre));
-              dispatch(setFilmsByGenre());
             }
           }
           href="#"
