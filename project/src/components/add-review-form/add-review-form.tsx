@@ -1,4 +1,8 @@
 import {useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {useAppDispatch} from '../../hooks';
+import {postReviewsAction} from '../../store/api-action';
+import {FormData} from '../../types/form-data';
 
 type Event = {
   target: {
@@ -12,32 +16,35 @@ type RadioStarProps = {
   cb: (evt: Event) => void
 }
 
-type InitialState = {
-  selectedOption: number,
-  text: string
-}
-
-const initialState: InitialState = {
-  selectedOption: 8,
-  text: ''
+const initialState: FormData = {
+  filmId: '',
+  rating: 8,
+  comment: ''
 };
 
 function AddReviewForm(): JSX.Element {
-  const [formData, setFormData] = useState({...initialState});
+  const {id} = useParams();
+  const dispatch = useAppDispatch();
+  const [formData, setFormData] = useState({...initialState, filmId: id});
 
   const handleChangeInput = (evt: Event) => {
-    const value = +evt.target.value;
-    setFormData({...formData, selectedOption: value});
+    const value = parseInt(evt.target.value, 10);
+    setFormData({...formData, rating: value});
   };
 
   const handleChangeTextarea = (evt: Event) => {
     const value = evt.target.value;
-    setFormData({...formData, text: value});
+    setFormData({...formData, comment: value});
+  };
+
+  const handleClickButton = (evt: React.SyntheticEvent): void => {
+    evt.preventDefault();
+    dispatch(postReviewsAction(formData));
   };
 
   const RadioStar = ({index, cb}: RadioStarProps) => (
     <>
-      <input onChange={cb} className="rating__input" id={`star-${index}`} type="radio" name="rating" value={index} checked={formData.selectedOption === index}/>
+      <input onChange={cb} className="rating__input" id={`star-${index}`} type="radio" name="rating" value={index} checked={formData.rating === index}/>
       <label className="rating__label" htmlFor={`star-${index}`}>{`Rating ${index}`}</label>
     </>
   );
@@ -47,15 +54,15 @@ function AddReviewForm(): JSX.Element {
       <div className="rating">
         <div className="rating__stars">
           {Array.from({length: 10}, (elem, index) => index + 1).sort((a, b) => b - a).map((elem) => {
-            const indexString = elem;
-            return <RadioStar key={indexString} index={indexString} cb={handleChangeInput}/>;
+            const index = elem;
+            return <RadioStar key={index} index={index} cb={handleChangeInput}/>;
           })}
         </div>
       </div>
       <div className="add-review__text">
-        <textarea onChange={handleChangeTextarea} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={formData.text}/>
+        <textarea onChange={handleChangeTextarea} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={formData.comment}/>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">Post</button>
+          <button onClick={handleClickButton} className="add-review__btn" type="submit">Post</button>
         </div>
       </div>
     </form>
