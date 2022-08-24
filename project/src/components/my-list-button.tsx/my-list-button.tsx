@@ -19,8 +19,10 @@ function MyListButton({film}: MyListButtonProps): JSX.Element {
   const favoriteFilm = filmsFavorite.find((item) => item.id === film.id);
 
   useEffect(() => {
-    dispatch(fetchFilmsFavoriteAction());
-  }, [dispatch]);
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFilmsFavoriteAction());
+    }
+  }, [authorizationStatus, dispatch]);
 
   const getFavoriteStatus = (): 1 | 0 => {
     if (favoriteFilm && favoriteFilm.isFavorite) {
