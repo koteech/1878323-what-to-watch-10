@@ -7,14 +7,20 @@ import FilmList from '../../components/film-list/film-list';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmAction, fetchFilmSimilarAction} from '../../store/api-action';
 import {useEffect} from 'react';
-import {Loading} from '../../components/loading/loading';
+import User from '../../components/user/user';
+import {getFilm, getFilmsSimilar} from '../../store/film-data/selectors';
+import {getLoadingObject} from '../../store/app-process/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import MyListButton from '../../components/my-list-button.tsx/my-list-button';
+import PageLoader from '../../components/loader/loader';
 
 function FilmPage(): JSX.Element {
   const {id} = useParams();
   const navigate = useNavigate();
-  const film = useAppSelector((state) => state.film);
-  const loadingObject = useAppSelector((state) => state.loadingObject);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const film = useAppSelector(getFilm);
+  const filmsSimilar = useAppSelector(getFilmsSimilar);
+  const loadingObject = useAppSelector(getLoadingObject);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -26,11 +32,11 @@ function FilmPage(): JSX.Element {
 
   if (loadingObject === LoadingObject.Film) {
     return (
-      <Loading/>
+      <PageLoader/>
     );
   }
 
-  if (film) {
+  if (film.id) {
     return (
       <>
         <section className="film-card film-card--full">
@@ -41,16 +47,7 @@ function FilmPage(): JSX.Element {
             <h1 className="visually-hidden">WTW</h1>
             <header className="page-header film-card__head">
               <Logo light={false}/>
-              <ul className="user-block">
-                <li className="user-block__item">
-                  <div className="user-block__avatar">
-                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-                  </div>
-                </li>
-                <li className="user-block__item">
-                  <a className="user-block__link">Sign out</a>
-                </li>
-              </ul>
+              <User/>
             </header>
             <div className="film-card__wrap">
               <div className="film-card__desc">
@@ -62,17 +59,11 @@ function FilmPage(): JSX.Element {
                 <div className="film-card__buttons">
                   <button onClick={() => navigate(`${AppRoute.Player}/${film.id}`)} className="btn btn--play film-card__button" type="button">
                     <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"/>
+                      <use xlinkHref="#play-s"></use>
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button onClick={() => navigate(AppRoute.MyList)} className="btn btn--list film-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"/>
-                    </svg>
-                    <span>My list</span>
-                    <span className="film-card__count">9</span>
-                  </button>
+                  {authorizationStatus === AuthorizationStatus.Auth && <MyListButton film={film}/>}
                   {authorizationStatus === AuthorizationStatus.Auth &&
                     <Link to='review' className="btn film-card__button">Add review</Link>}
                 </div>
@@ -91,7 +82,7 @@ function FilmPage(): JSX.Element {
         <div className="page-content">
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-            <FilmList genre={film.genre}/>
+            <FilmList films={filmsSimilar} count={4}/>
           </section>
           <footer className="page-footer">
             <Logo light/>
