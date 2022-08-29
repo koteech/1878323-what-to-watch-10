@@ -29,7 +29,7 @@ function AddReviewForm(): JSX.Element {
   const [formData, setFormData] = useState({...initialState, filmId: id});
   const isFormBlocked = useAppSelector(getIsFormBlocked);
 
-    const handleChangeInput = (evt: Event) => {
+  const handleChangeInput = (evt: Event) => {
     const value = parseInt(evt.target.value, 10);
     setFormData({...formData, rating: value});
   };

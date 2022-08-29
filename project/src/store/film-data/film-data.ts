@@ -19,9 +19,7 @@ const initialState: FilmData = {
   filmPromo: {} as Film,
 };
 
-const getIndex = (films: Films, film: Film): number => {
-  return films.findIndex((elem) => elem.id === film.id);
-};
+const getIndex = (films: Films, film: Film): number => films.findIndex((elem) => elem.id === film.id);
 
 export const filmData = createSlice({
   name: NameSpace.FilmData,
