@@ -29,7 +29,7 @@ function AddReviewForm(): JSX.Element {
   const [formData, setFormData] = useState({...initialState, filmId: id});
   const isFormBlocked = useAppSelector(getIsFormBlocked);
 
-  const handleChangeInput = (evt: Event) => {
+    const handleChangeInput = (evt: Event) => {
     const value = parseInt(evt.target.value, 10);
     setFormData({...formData, rating: value});
   };
@@ -62,7 +62,7 @@ function AddReviewForm(): JSX.Element {
         </div>
       </div>
       <div className="add-review__text">
-        <textarea onChange={handleChangeTextarea} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={formData.comment} disabled={isFormBlocked}></textarea>
+        <textarea onChange={handleChangeTextarea} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={formData.comment} disabled={isFormBlocked} data-testid='comment'></textarea>
         <div className="add-review__submit">
           <button onClick={handleClickButton} className="add-review__btn" type="submit" disabled={!(formData.comment.length >= 50 && formData.comment.length <= 400) || isFormBlocked}>Post
           </button>
