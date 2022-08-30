@@ -57,7 +57,7 @@ function MainPage(): JSX.Element {
               <div className="film-card__buttons">
                 <button onClick={() => navigate(`${AppRoute.Player}/${filmPromo && filmPromo.id}`)} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
+                    <use xlinkHref="#play-s"/>
                   </svg>
                   <span>Play</span>
                 </button>

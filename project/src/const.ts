@@ -33,7 +33,10 @@ export enum Genre {
   'Kids & Family' = 'Kids & Family',
   Romance = 'Romance',
   'Sci-Fi' = 'Sci-Fi',
-  Thriller = 'Thrillers'
+  Thriller = 'Thrillers',
+  Action = 'Action',
+  Fantasy = 'Fantasy',
+  Adventure = 'Adventure',
 }
 
 export enum APIRoute {
@@ -57,3 +60,10 @@ export enum NameSpace {
   App = 'APP',
   User = 'USER'
 }
+
+export enum ReviewFormSettings {
+  MinCommentLength = 50,
+  MaxCommentLength = 400,
+}
+
+export const PASSWORD_REGEXP = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]/g;

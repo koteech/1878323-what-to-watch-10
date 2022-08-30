@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFilmsFavoriteAction, postFilmFavoriteStatusAction} from '../../store/api-action';
+import {clearFavorites} from '../../store/film-data/film-data';
 import {getFilmsFavorite} from '../../store/film-data/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {Film} from '../../types/films';
@@ -21,8 +22,10 @@ function MyListButton({film}: MyListButtonProps): JSX.Element {
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(fetchFilmsFavoriteAction());
+    } else {
+      dispatch(clearFavorites());
     }
-  }, [authorizationStatus, dispatch]);
+  }, [dispatch, authorizationStatus]);
 
   const getFavoriteStatus = (): 1 | 0 => {
     if (favoriteFilm && favoriteFilm.isFavorite) {
@@ -34,6 +37,7 @@ function MyListButton({film}: MyListButtonProps): JSX.Element {
   const onButtonClickHandle = () => {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
       navigate(AppRoute.SignIn);
+      return;
     }
     dispatch(postFilmFavoriteStatusAction({
       filmId: film.id,
@@ -44,7 +48,7 @@ function MyListButton({film}: MyListButtonProps): JSX.Element {
   return (
     <button onClick={onButtonClickHandle} className="btn btn--list film-card__button" type="button">
       <svg viewBox="0 0 19 20" width="19" height="20">
-        <use xlinkHref={`${getFavoriteStatus()}` === '0' ? '#in-list' : '#add'}></use>
+        <use xlinkHref={`${getFavoriteStatus()}` === '0' ? '#in-list' : '#add'}/>
       </svg>
       <span>My list</span>
       <span className="film-card__count">{filmsFavorite.length}</span>

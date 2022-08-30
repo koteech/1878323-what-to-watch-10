@@ -1,4 +1,3 @@
-import NoPage from '../../pages/no-page/no-page';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {getFilms} from '../../store/film-data/selectors';
@@ -39,6 +38,7 @@ function PlayerPage(): JSX.Element {
 
     if (isPlaying) {
       videoRef.current.play();
+      videoRef.current.muted = false;
       return;
     }
 
@@ -49,13 +49,13 @@ function PlayerPage(): JSX.Element {
       videoRef.current?.removeEventListener('loadstart', addIsLoading);
       videoRef.current?.removeEventListener('canplay', dellIsLoading);
     };
-  }, [isPlaying]);
+  }, [isPlaying, film]);
 
   if (film) {
     return (
       <div className="player">
         {isLoading && <PageLoader/>}
-        <video ref={videoRef} src={film.videoLink} className="player__video" poster={film.posterImage}></video>
+        <video ref={videoRef} src={film.videoLink} className="player__video" poster={film.posterImage} muted></video>
         <button onClick={() => navigate(-1)} type="button" className="player__exit">Exit</button>
         <div className="player__controls">
           <div className="player__controls-row">
@@ -63,7 +63,7 @@ function PlayerPage(): JSX.Element {
               <progress className="player__progress" value={togglerPos} max="100"></progress>
               <div className="player__toggler" style={{left: `${togglerPos}%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">{`${getFilmTime(videoRef.current?.duration)}`}</div>
+            <div className="player__time-value">{videoRef.current ? getFilmTime(videoRef.current.duration - videoRef.current.currentTime) : '00:00:00'}</div>
           </div>
           <div className="player__controls-row">
             <button onClick={() => setIsPlaying(!isPlaying)} type="button" className="player__play">
@@ -84,7 +84,7 @@ function PlayerPage(): JSX.Element {
       </div>
     );
   }
-  return <NoPage/>;
+  return <PageLoader/>;
 }
 
 export default PlayerPage;
