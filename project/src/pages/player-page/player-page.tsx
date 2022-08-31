@@ -63,7 +63,7 @@ function PlayerPage(): JSX.Element {
               <progress className="player__progress" value={togglerPos} max="100"></progress>
               <div className="player__toggler" style={{left: `${togglerPos}%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">{videoRef.current ? getFilmTime(videoRef.current.duration - videoRef.current.currentTime) : '00:00:00'}</div>
+            <div className="player__time-value">-{videoRef.current ? getFilmTime(videoRef.current.duration - videoRef.current.currentTime) : '00:00:00'}</div>
           </div>
           <div className="player__controls-row">
             <button onClick={() => setIsPlaying(!isPlaying)} type="button" className="player__play">

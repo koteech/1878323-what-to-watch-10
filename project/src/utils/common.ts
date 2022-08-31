@@ -12,7 +12,7 @@ const getFormatDateByString = (string: string): string => new Date(string).toLoc
 
 const getFilmTime = (seconds: number | undefined): string => {
   if (seconds) {
-    return new Date(Math.trunc(seconds) * 1000).toISOString().substring(11, 19);
+    return seconds >= 3600 ? new Date(Math.trunc(seconds) * 1000).toISOString().substring(11, 19) : new Date(Math.trunc(seconds) * 1000).toISOString().substring(14, 19);
   }
   return '00:00';
 };

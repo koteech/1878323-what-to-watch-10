@@ -28,7 +28,12 @@ function App(): JSX.Element {
         }
         />
         <Route path={`${AppRoute.Films}/:id`} element={<FilmPage/>}/>
-        <Route path={`${AppRoute.Films}/:id/${AppRoute.AddReview}`} element={<AddReviewPage/>}/>
+        <Route path={`${AppRoute.Films}/:id/${AppRoute.AddReview}`} element={
+          <PrivateRoute>
+            <AddReviewPage/>
+          </PrivateRoute>
+        }
+        />
         <Route path={`${AppRoute.Player}/:id`} element={<PlayerPage/>}/>
         <Route path='*' element={<NoPage/>}/>
       </Routes>
