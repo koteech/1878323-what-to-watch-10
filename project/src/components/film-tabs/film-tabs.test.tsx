@@ -17,6 +17,7 @@ const initialState = {
     filmsSimilar: [],
     filmsFavorite: [],
     filmPromo: {} as Film,
+    isLoadError: false,
   } as FilmData
 };
 

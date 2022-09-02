@@ -7,6 +7,7 @@ const initialState: AppProcess = {
   genre: Genre['All genres'],
   showCount: SHOW_FILM_COUNT,
   loadingObject: '' as LoadingObject,
+  isLoadError: false,
 };
 
 export const appProcess = createSlice({
@@ -26,11 +27,16 @@ export const appProcess = createSlice({
   },
   extraReducers(builder) {
     builder
+      .addCase(fetchFilmsAction.rejected, (state) => {
+        state.isLoadError = true;
+      })
       .addCase(fetchFilmsAction.pending, (state) => {
         state.loadingObject = LoadingObject.Films;
+        state.isLoadError = false;
       })
       .addCase(fetchFilmsAction.fulfilled || fetchFilmsAction.rejected, (state) => {
         state.loadingObject = '' as LoadingObject;
+        state.isLoadError = false;
       })
       .addCase(fetchFilmAction.pending, (state) => {
         state.loadingObject = LoadingObject.Film;

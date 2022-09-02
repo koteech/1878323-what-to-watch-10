@@ -10,8 +10,9 @@ import MyListButton from '../../components/my-list-button.tsx/my-list-button';
 import FilmsSection from '../../components/films-section/films-section';
 import {resetFilmCount} from '../../store/app-process/app-process';
 import PageLoader from '../../components/loader/loader';
-import {getLoadingObject} from '../../store/app-process/selectors';
+import {getIsLoadedError, getLoadingObject} from '../../store/app-process/selectors';
 import {isAuthStatusUnknown} from '../../film';
+import NoPage from '../no-page/no-page';
 
 
 function MainPage(): JSX.Element {
@@ -19,12 +20,17 @@ function MainPage(): JSX.Element {
   const filmPromo = useAppSelector(getFilmPromo);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const loadingObject = useAppSelector(getLoadingObject);
+  const isErrorLoadFilms = useAppSelector(getIsLoadedError);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => () => {
     dispatch(resetFilmCount());
   }, [dispatch]);
+
+  if (isErrorLoadFilms) {
+    return <NoPage/>;
+  }
 
   if (isAuthStatusUnknown(authorizationStatus) || loadingObject === LoadingObject.Films) {
     return (
@@ -34,30 +40,30 @@ function MainPage(): JSX.Element {
 
   return (
     <>
-      <section className="film-card">
-        <div className="film-card__bg">
+      <section className='film-card'>
+        <div className='film-card__bg'>
           <img src={`${filmPromo && filmPromo.backgroundImage}`} alt={`${filmPromo && filmPromo.name}`}/>
         </div>
-        <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header film-card__head">
+        <h1 className='visually-hidden'>WTW</h1>
+        <header className='page-header film-card__head'>
           <Logo light={false}/>
           <User/>
         </header>
-        <div className="film-card__wrap">
-          <div className="film-card__info">
-            <div className="film-card__poster">
-              <img src={`${filmPromo && filmPromo.posterImage}`} alt={`${filmPromo && filmPromo.posterImage} poster`} width="218" height="327"/>
+        <div className='film-card__wrap'>
+          <div className='film-card__info'>
+            <div className='film-card__poster'>
+              <img src={`${filmPromo && filmPromo.posterImage}`} alt={`${filmPromo && filmPromo.posterImage} poster`} width='218' height='327'/>
             </div>
-            <div className="film-card__desc">
-              <h2 className="film-card__title">{`${filmPromo && filmPromo.name}`}</h2>
-              <p className="film-card__meta">
-                <span className="film-card__genre">{`${filmPromo && filmPromo.genre}`}</span>
-                <span className="film-card__year">{`${filmPromo && filmPromo.released}`}</span>
+            <div className='film-card__desc'>
+              <h2 className='film-card__title'>{`${filmPromo && filmPromo.name}`}</h2>
+              <p className='film-card__meta'>
+                <span className='film-card__genre'>{`${filmPromo && filmPromo.genre}`}</span>
+                <span className='film-card__year'>{`${filmPromo && filmPromo.released}`}</span>
               </p>
-              <div className="film-card__buttons">
-                <button onClick={() => navigate(`${AppRoute.Player}/${filmPromo && filmPromo.id}`)} className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"/>
+              <div className='film-card__buttons'>
+                <button onClick={() => navigate(`${AppRoute.Player}/${filmPromo && filmPromo.id}`)} className='btn btn--play film-card__button' type='button'>
+                  <svg viewBox='0 0 19 19' width='19' height='19'>
+                    <use xlinkHref='#play-s'/>
                   </svg>
                   <span>Play</span>
                 </button>
@@ -67,12 +73,12 @@ function MainPage(): JSX.Element {
           </div>
         </div>
       </section>
-      <div className="page-content">
+      <div className='page-content'>
         <FilmsSection/>
 
-        <footer className="page-footer">
+        <footer className='page-footer'>
           <Logo light/>
-          <div className="copyright">
+          <div className='copyright'>
             <p>© 2019 What to watch Ltd.</p>
           </div>
         </footer>

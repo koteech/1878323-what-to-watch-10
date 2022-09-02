@@ -9,7 +9,7 @@ import {fetchFilmAction, fetchFilmSimilarAction} from '../../store/api-action';
 import {useEffect} from 'react';
 import User from '../../components/user/user';
 import {getFilm, getFilmsSimilar} from '../../store/film-data/selectors';
-import {getLoadingObject} from '../../store/app-process/selectors';
+import {getIsLoadedError, getLoadingObject} from '../../store/app-process/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import MyListButton from '../../components/my-list-button.tsx/my-list-button';
 import PageLoader from '../../components/loader/loader';
@@ -22,6 +22,7 @@ function FilmPage(): JSX.Element {
   const loadingObject = useAppSelector(getLoadingObject);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
+  const isErrorLoadFilms = useAppSelector(getIsLoadedError);
 
   useEffect(() => {
     if (id) {
@@ -30,13 +31,17 @@ function FilmPage(): JSX.Element {
     }
   }, [dispatch, id]);
 
+  if (isErrorLoadFilms) {
+    return <NoPage/>;
+  }
+
   if (loadingObject === LoadingObject.Film) {
     return (
       <PageLoader/>
     );
   }
 
-  if (film.id) {
+  if (Object.keys(film).length > 0) {
     return (
       <>
         <section className="film-card film-card--full">

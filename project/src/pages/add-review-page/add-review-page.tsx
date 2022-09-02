@@ -29,7 +29,7 @@ function AddReviewPage(): JSX.Element {
     );
   }
 
-  if (film) {
+  if (Object.keys(film).length > 0) {
     return (
       <section className="film-card film-card--full">
         <div className="film-card__header">

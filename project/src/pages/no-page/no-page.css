@@ -1,0 +1,28 @@
+.error-page__content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-page__content h1 {
+  font-size: 4em;
+  margin: .35em 0;
+}
+
+.to-back {
+  padding: 18px 40px;
+  margin-top: 1em;
+  background: 0 0;
+  border: 1px solid rgba(217,205,141,.41);
+  border-radius: 8px;
+  transition: border-color .2s;
+  color: #d9cd8d;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.to-back:hover {
+  border-color: #a89a44;
+}

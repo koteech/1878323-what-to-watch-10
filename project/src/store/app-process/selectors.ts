@@ -6,3 +6,5 @@ export const getGenre = (state: State): Genre => state[NameSpace.App].genre;
 export const getLoadingObject = (state: State): LoadingObject => state[NameSpace.App].loadingObject;
 
 export const getShowCount = (state: State): number => state[NameSpace.App].showCount;
+
+export const getIsLoadedError = (state: State) => state[NameSpace.App].isLoadError;

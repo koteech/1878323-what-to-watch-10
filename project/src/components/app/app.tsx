@@ -9,9 +9,10 @@ import NoPage from '../../pages/no-page/no-page';
 import {AppRoute} from '../../const';
 import PrivateRoute from '../../components/private-route/private-route';
 import HistoryRouter from '../../history-route';
-import browserHistory from '../../browser-history';
+import browserHistory from '../browser-history/browser-history';
 
 function App(): JSX.Element {
+
 
   return (
     <HistoryRouter history={browserHistory}>

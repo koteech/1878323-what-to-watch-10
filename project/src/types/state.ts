@@ -26,6 +26,7 @@ export type AppProcess = {
   genre: Genre,
   showCount: number,
   loadingObject: LoadingObject,
+  isLoadError: boolean,
 };
 
 export type State = ReturnType<typeof store.getState>;

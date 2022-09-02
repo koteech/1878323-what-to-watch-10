@@ -7,6 +7,7 @@ const initialState: AppProcess = {
   genre: Genre['All genres'],
   showCount: SHOW_FILM_COUNT,
   loadingObject: '' as LoadingObject,
+  isLoadError: false,
 };
 describe('Reducer: app', () => {
   let state: AppProcess;

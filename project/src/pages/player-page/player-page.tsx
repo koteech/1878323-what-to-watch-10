@@ -4,6 +4,9 @@ import {getFilms} from '../../store/film-data/selectors';
 import {useEffect, useRef, useState} from 'react';
 import PageLoader from '../../components/loader/loader';
 import {getFilmTime} from '../../utils/common';
+import NoPage from '../no-page/no-page';
+import {getIsLoadedError, getLoadingObject} from '../../store/app-process/selectors';
+import {LoadingObject} from '../../const';
 
 function PlayerPage(): JSX.Element {
   const navigate = useNavigate();
@@ -14,6 +17,8 @@ function PlayerPage(): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [togglerPos, setTogglerPos] = useState(0);
+  const isErrorLoadFilms = useAppSelector(getIsLoadedError);
+  const loadingObject = useAppSelector(getLoadingObject);
 
   useEffect(() => {
     if (videoRef.current === null) {
@@ -51,6 +56,16 @@ function PlayerPage(): JSX.Element {
     };
   }, [isPlaying, film]);
 
+  if (loadingObject === LoadingObject.Film) {
+    return (
+      <PageLoader/>
+    );
+  }
+
+  if (isErrorLoadFilms) {
+    return <NoPage/>;
+  }
+
   if (film) {
     return (
       <div className="player">
@@ -84,7 +99,7 @@ function PlayerPage(): JSX.Element {
       </div>
     );
   }
-  return <PageLoader/>;
+  return <NoPage/>;
 }
 
 export default PlayerPage;
