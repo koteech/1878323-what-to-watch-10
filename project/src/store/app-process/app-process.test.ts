@@ -47,7 +47,7 @@ describe('Reducer: app', () => {
     });
     it('should set loadingObject to \'\' if fetchFilmsAction rejected', () => {
       expect(appProcess.reducer(state, {type: fetchFilmsAction.rejected.type}))
-        .toEqual({genre: Genre['All genres'], loadingObject: '', showCount: SHOW_FILM_COUNT, isLoadError: false});
+        .toEqual({genre: Genre['All genres'], loadingObject: '', showCount: SHOW_FILM_COUNT, isLoadError: true});
     });
   });
 
