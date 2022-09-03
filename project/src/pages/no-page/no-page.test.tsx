@@ -13,8 +13,8 @@ describe('Component: NoPage', () => {
       </HistoryRouter>
     );
 
-    const headerElement = screen.getByText(/404 Not Found/i);
-    const linkElement = screen.getByText(/Вернуться на главную/i);
+    const headerElement = screen.getByText(/Page Not Found/i);
+    const linkElement = screen.getByText(/Go to home page/i);
 
     expect(headerElement).toBeInTheDocument();
     expect(linkElement).toBeInTheDocument();
