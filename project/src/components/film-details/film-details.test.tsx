@@ -1,6 +1,6 @@
 import {createMemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
-import HistoryRouter from '../../history-route';
+import HistoryRouter from '../history-route/history-route';
 import {FilmDetails} from './film-details';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {Provider} from 'react-redux';

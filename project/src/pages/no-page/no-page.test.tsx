@@ -1,6 +1,6 @@
 import {createMemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
-import HistoryRouter from '../../history-route';
+import HistoryRouter from '../../components/history-route/history-route';
 import NoPage from './no-page';
 
 describe('Component: NoPage', () => {

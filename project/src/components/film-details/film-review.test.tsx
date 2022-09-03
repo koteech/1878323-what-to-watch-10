@@ -1,6 +1,6 @@
 import {createMemoryHistory} from 'history';
 import {render, screen} from '@testing-library/react';
-import HistoryRouter from '../../history-route';
+import HistoryRouter from '../history-route/history-route';
 import {makeFakeReview} from '../../utils/mocks';
 import {Review} from '../../types/reviews';
 import FilmReview from './film-review';
